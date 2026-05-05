@@ -11,10 +11,13 @@ public class stepsDef {
 
         driver= new ChromeDriver();
         driver.get("https://ndosisimplifiedautomation.vercel.app/");
+        driver.manage().window().maximize();
+        driver.quit();
 
     }
     @And("I enter email email")
     public void i_enter_email_email() {
+
 
     }
     @And("I enter password password")
