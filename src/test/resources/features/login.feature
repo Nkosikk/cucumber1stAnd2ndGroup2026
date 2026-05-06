@@ -8,4 +8,5 @@ Feature: login
     Then i should be logged in successfully
     Examples:
       | email | password |
-      | email | password |
+      | admin@gmail.com| @12345678 |
+      | njceles@gmail.com| @12345678 |
