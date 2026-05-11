@@ -16,7 +16,7 @@ public class stepsDef {
         driver = new ChromeDriver();
         driver.get("https://ndosisimplifiedautomation.vercel.app/");
         driver.manage().window().maximize();
-        driver.findElement(By.xpath("/html/body/div/div/nav/div[1]/div[3]/button")).click();
+        driver.findElement(By.xpath("//span[text()='Login']")).click();
 
     }
 
