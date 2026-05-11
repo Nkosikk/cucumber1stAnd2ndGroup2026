@@ -1,9 +1,10 @@
+package Steps;
+
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 
 public class stepsDef {
 
@@ -14,14 +15,14 @@ public class stepsDef {
 
         driver = new ChromeDriver();
         driver.get("https://ndosisimplifiedautomation.vercel.app/");
-        driver.findElement(By.xpath("//*[@id=\"app-root\"]/nav/div[1]/div[3]/button/span[2]")).click();
+        driver.manage().window().maximize();
+        driver.findElement(By.xpath("/html/body/div/div/nav/div[1]/div[3]/button")).click();
 
     }
 
     @And("I enter email (.*)$")
     public void i_enter_email(String email) {
         driver.findElement(By.id("login-email")).sendKeys(email);
-
     }
 
     @And("I enter password (.*)$")
@@ -37,11 +38,15 @@ public class stepsDef {
     @Then("i should be logged in successfully")
     public void i_should_be_logged_in_successfully() {
         assert driver.findElement(By.xpath("//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[4]/button/span[2]")).isDisplayed();
-
     }
+
     @After
     public void closeBrowser(){
         driver.quit();
     }
 
+    @And("I click mobile automation")
+    public void iClickMobileAutomation() {
+        //fffffff
+    }
 }
