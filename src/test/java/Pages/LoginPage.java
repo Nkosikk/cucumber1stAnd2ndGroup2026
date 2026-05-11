@@ -9,20 +9,20 @@ import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class HomePage {
+public class LoginPage {
     WebDriver driver;
 
-    @FindBy(xpath = "//span[text()='Login']")
-    WebElement loginButton_xpath;
+    @FindBy(xpath = "//span[normalize-space()='Access Learning Materials']")
+    WebElement loginHeading_xpath;
 
-    public HomePage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void clickLoginButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(loginButton_xpath));
-        loginButton_xpath.click();
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(loginHeading_xpath));
+        loginHeading_xpath.isDisplayed();
     }
 
-
+    
 }
