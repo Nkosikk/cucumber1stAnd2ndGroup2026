@@ -37,16 +37,16 @@ public class stepsDef {
 
     @Then("i should be logged in successfully")
     public void i_should_be_logged_in_successfully() {
-        assert driver.findElement(By.xpath("//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[4]/button/span[2]")).isDisplayed();
-    }
-
-    @After
-    public void closeBrowser(){
-        driver.quit();
+        assert driver.findElement(By.xpath("//h2[contains(.,'Welcome back')]")).isDisplayed();
     }
 
     @And("I click mobile automation")
     public void iClickMobileAutomation() {
         //fffffff
+    }
+
+    @After
+    public void closeBrowser(){
+        driver.quit();
     }
 }
