@@ -9,13 +9,13 @@ import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class homePage {
+public class HomePage {
     WebDriver driver;
 
     @FindBy(xpath = "//span[text()='Login']")
     WebElement loginButton_xpath;
 
-    public homePage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         this.driver = driver;
     }
 
