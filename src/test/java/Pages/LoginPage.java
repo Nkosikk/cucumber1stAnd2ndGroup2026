@@ -15,14 +15,23 @@ public class LoginPage {
     @FindBy(xpath = "//span[normalize-space()='Access Learning Materials']")
     WebElement loginHeading_xpath;
 
+    @FindBy(id = "login-email")
+    WebElement loginEmail_id;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void clickLoginButton() {
+    public void verifyLoginPageIsDisplayed() {
         new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(loginHeading_xpath));
         loginHeading_xpath.isDisplayed();
     }
+
+    public void enterEmail(String email) {
+        loginEmail_id.sendKeys(email);
+    }
+
+
 
     
 }
