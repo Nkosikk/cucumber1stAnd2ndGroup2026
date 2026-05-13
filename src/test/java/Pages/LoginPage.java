@@ -21,6 +21,9 @@ public class LoginPage {
     @FindBy(id = "login-password")
     WebElement password_id;
 
+    @FindBy(id ="login-submit")
+    WebElement loginButton;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -38,7 +41,9 @@ public class LoginPage {
         password_id.sendKeys(password);
     }
 
-
+    public void clickLoginButton() {
+        loginButton.click();
+    }
 
     
 }
