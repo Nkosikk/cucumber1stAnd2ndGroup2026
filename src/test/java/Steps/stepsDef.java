@@ -39,13 +39,13 @@ public class stepsDef extends Base{
 
     @And("I click on the logged in user")
     public void iClickOnTheLoggedInUser() {
-        // Write code here that turns the phrase above into concrete actions
+        dashboardPage.clickUserMenuButton_xpath();
 
     }
 
     @And("I click on the admin panel")
     public void iClickOnTheAdminPanel() {
-        // Write code here that turns the phrase above into concrete actions
+
     }
 
     @And("I click on the groups tab")
