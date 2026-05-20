@@ -1,4 +1,4 @@
-@Registration @Regression
+@createGroup @Regression
 Feature: Create Group
 
   Scenario Outline: as admin user i want to login to ndosi website
