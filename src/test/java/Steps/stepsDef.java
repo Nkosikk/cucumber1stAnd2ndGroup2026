@@ -1,52 +1,108 @@
 package Steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
-public class stepsDef {
+public class stepsDef extends Base {
 
-    WebDriver driver;
 
     @Given("i am on the login page")
     public void i_am_on_the_login_page() {
-
-        driver = new ChromeDriver();
-        driver.get("https://ndosisimplifiedautomation.vercel.app/");
-        driver.manage().window().maximize();
-        driver.findElement(By.xpath("//span[text()='Login']")).click();
-
+        homePage.clickLoginButton();
+        loginPage.verifyLoginPageIsDisplayed();
     }
 
     @And("I enter email (.*)$")
     public void i_enter_email(String email) {
-        driver.findElement(By.id("login-email")).sendKeys(email);
+        loginPage.enterEmail(email);
     }
 
     @And("I enter password (.*)$")
     public void i_enter_password(String password) {
-        driver.findElement(By.id("login-password")).sendKeys(password);
+        loginPage.enterPassword(password);
     }
 
     @When("I click login button")
     public void i_click_login_button() {
-        driver.findElement(By.id("login-submit")).click();
+        loginPage.clickLoginButton();
     }
 
     @Then("i should be logged in successfully")
     public void i_should_be_logged_in_successfully() {
-        assert driver.findElement(By.xpath("//h2[contains(.,'Welcome back')]")).isDisplayed();
+        dashboardPage.verifyDashboardPageIsDisplayed();
     }
 
-    @And("I click mobile automation")
-    public void iClickMobileAutomation() {
-        //fffffff
-    }
 
     @After
-    public void closeBrowser(){
-        driver.quit();
+    public void closeBrowser() {
     }
+
+    @And("I click on the logged in user")
+    public void iClickOnTheLoggedInUser() {
+        dashboardPage.clickUserMenuButton_xpath();
+
+    }
+
+    @And("I click on the admin panel")
+    public void iClickOnTheAdminPanel() {
+
+    }
+
+    @And("I click on the groups tab")
+    public void iClickOnTheGroupsTab() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("I click on the create group button")
+    public void iClickOnTheCreateGroupButton() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("I enter group name (.*)$")
+    public void iEnterGroupNameGroupName(String groupName) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("I enter group description (.*)$")
+    public void iEnterGroupDescriptionGroupDescription(String groupDescription) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("I enter year (.*)$")
+    public void iEnterYear(int year) {
+    }
+
+    @And("I enter max capacity (.*)$")
+    public void iEnterMaxCapacityMaxCapacity(int maxCapacity) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("I enter start date (.*)$")
+    public void iEnterStartDateStartDate(String startDate) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("I enter end date (.*)$")
+    public void iEnterEndDateEndDate(String endDate) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Then("i should see the group created successfully")
+    public void iShouldSeeTheGroupCreatedSuccessfully() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @AfterStep
+    public void addScreenshots(Scenario scenario) {
+        if (scenario.isFailed()) {
+            byte[] screenshots = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshots, "image/png", "image");
+        }
+    }
+
+
 }
