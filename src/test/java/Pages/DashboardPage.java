@@ -19,8 +19,11 @@ public class DashboardPage {
     @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/div/button")
     WebElement userMenuButton_xpath;
 
-    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/div/div/button[4]/span[2]")
+    @FindBy(xpath = "//button[@class='nav-dropdown-item']//span[contains(text(),'Admin Panel')]")
     WebElement adminPanel_xpath;
+
+    @FindBy(xpath="//button[contains(.,'Groups')]")
+    WebElement groupsButton_xpath;
 
 
     public DashboardPage(WebDriver driver) {
@@ -40,6 +43,10 @@ public class DashboardPage {
 
     public void clickAdminPanelButton_xpath() {
         adminPanel_xpath.click();
+    }
+
+    public void clickGroupsButton(){
+        groupsButton_xpath.click();
     }
 
 }

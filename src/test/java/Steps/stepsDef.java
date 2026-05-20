@@ -55,7 +55,8 @@ public class stepsDef extends Base {
 
     @And("I click on the groups tab")
     public void iClickOnTheGroupsTab() {
-        // Write code here that turns the phrase above into concrete actions
+
+        dashboardPage.clickGroupsButton();
     }
 
     @And("I click on the create group button")
