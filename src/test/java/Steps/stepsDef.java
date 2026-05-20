@@ -1,9 +1,13 @@
 package Steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
-public class stepsDef extends Base{
+public class stepsDef extends Base {
 
 
     @Given("i am on the login page")
@@ -69,7 +73,8 @@ public class stepsDef extends Base{
     }
 
     @And("I enter year (.*)$")
-    public void iEnterYear(int year) { }
+    public void iEnterYear(int year) {
+    }
 
     @And("I enter max capacity (.*)$")
     public void iEnterMaxCapacityMaxCapacity(int maxCapacity) {
@@ -90,4 +95,14 @@ public class stepsDef extends Base{
     public void iShouldSeeTheGroupCreatedSuccessfully() {
         // Write code here that turns the phrase above into concrete actions
     }
+
+    @AfterStep
+    public void addScreenshots(Scenario scenario) {
+        if (scenario.isFailed()) {
+            byte[] screenshots = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshots, "image/png", "image");
+        }
+    }
+
+
 }
