@@ -24,7 +24,9 @@ public class BrowserFactory {
             if (headless) {
                 chromeOptions.addArguments("--headless=new");
             }
-
+            chromeOptions.addArguments("--no-sandbox");
+            chromeOptions.addArguments("--disable-dev-shm-usage");
+            chromeOptions.addArguments("--window-size=1920,1080");
             driver = new ChromeDriver(chromeOptions);
 
         } else if (browserChoice.equalsIgnoreCase("edge")) {
