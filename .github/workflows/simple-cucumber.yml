@@ -3,6 +3,7 @@ name: Simple Cucumber CI
 on:
   push:
     branches: [ main ]
+
   pull_request:
     branches: [ main ]
 
@@ -14,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -24,13 +26,41 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build and run tests
-        run: mvn -B clean test
+      - name: Build and Run Tests
+        run: mvn clean test
 
       - name: Upload Cucumber Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
-          path: target/
+          path: target/cucumber-report.html
           retention-days: 7
+
+      - name: Send Email Report
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+
+          subject: Cucumber Automation Test Report
+
+          to: fitness.seed@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+
+          body: |
+            Hi Team,
+
+            Please find attached the latest Cucumber Automation Report.
+
+            Execution completed successfully.
+
+            Regards,
+            GitHub Actions CI
+
+          attachments: target/cucumber-report.html
