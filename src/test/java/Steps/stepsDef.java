@@ -66,16 +66,17 @@ public class stepsDef extends Base {
 
     @And("I enter group name (.*)$")
     public void iEnterGroupNameGroupName(String groupName) {
-        // Write code here that turns the phrase above into concrete actions
+        dashboardPage.groupNameInput(groupName);
     }
 
     @And("I enter group description (.*)$")
     public void iEnterGroupDescriptionGroupDescription(String groupDescription) {
-        // Write code here that turns the phrase above into concrete actions
+        dashboardPage.groupDescriptionArea(groupDescription);
     }
 
     @And("I enter year (.*)$")
-    public void iEnterYear(int year) {
+    public void iEnterYear(String year) {
+        dashboardPage.enterGroupYear(year);
     }
 
     @And("I enter max capacity (.*)$")
