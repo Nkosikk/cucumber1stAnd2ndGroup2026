@@ -80,18 +80,18 @@ public class stepsDef extends Base {
     }
 
     @And("I enter max capacity (.*)$")
-    public void iEnterMaxCapacityMaxCapacity(int maxCapacity) {
-        // Write code here that turns the phrase above into concrete actions
+    public void iEnterMaxCapacityMaxCapacity(String maxCapacity) {
+        dashboardPage.enterMaxCapacity(maxCapacity);
     }
 
     @And("I enter start date (.*)$")
     public void iEnterStartDateStartDate(String startDate) {
-        // Write code here that turns the phrase above into concrete actions
+        dashboardPage.enterStartDate(startDate);
     }
 
     @And("I enter end date (.*)$")
     public void iEnterEndDateEndDate(String endDate) {
-        // Write code here that turns the phrase above into concrete actions
+        dashboardPage.enterEndDate(endDate);
     }
 
     @Then("i should see the group created successfully")

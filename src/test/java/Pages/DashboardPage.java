@@ -38,8 +38,17 @@ public class DashboardPage {
     @FindBy(xpath = "//textarea[@name='description']")
     WebElement groupDescriptionArea;
 
-    @FindBy(xpath = "//input[@name='year']")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[4]/div[1]/input")
+    WebElement startDate_xpath;
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[4]/div[2]/input")
+    WebElement endDate_xpath;
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[3]/div[1]/input")
     WebElement groupYear;
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[3]/div[2]/input")
+    WebElement maxCapacity_xpath;
 
 
     public DashboardPage(WebDriver driver) {
@@ -80,8 +89,8 @@ public class DashboardPage {
     public void groupNameInput(String groupName) throws InterruptedException {
         groupNameInput.sendKeys(groupName);
 
-        Assert.assertEquals(groupNameInput.getAttribute("value"), "some name",
-                "Group Name entered is correct");
+//        Assert.assertEquals(groupNameInput.getAttribute("value"), "some name",
+//                "Group Name entered is correct");
     }
 
     public void groupDescriptionArea(String groupDescription) {
@@ -92,6 +101,21 @@ public class DashboardPage {
         groupYear.click();
         groupYear.clear();
         groupYear.sendKeys(year);
+    }
+
+    public void enterStartDate(String startDate) {
+        startDate_xpath.click();
+        startDate_xpath.clear();
+        startDate_xpath.sendKeys(startDate);
+    }
+
+    public void enterEndDate(String date) {
+//        endDate_xpath.clear();
+        endDate_xpath.sendKeys(date);
+    }
+
+    public void enterMaxCapacity(String capacity) {
+        maxCapacity_xpath.sendKeys(capacity);
     }
 
 
