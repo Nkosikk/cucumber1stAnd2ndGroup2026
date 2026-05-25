@@ -51,7 +51,7 @@ jobs:
           subject: Cucumber Automation Test Report
 
           to: fitness.seed@gmail.com
-          from: ${{ secrets.EMAIL_USERNAME }}
+          from: ${{ secrets.MAIL_USERNAME }}
 
           body: |
             Hi Team,
