@@ -1,9 +1,13 @@
 package Steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
-public class stepsDef extends Base{
+public class stepsDef extends Base {
 
 
     @Given("i am on the login page")
@@ -45,31 +49,35 @@ public class stepsDef extends Base{
 
     @And("I click on the admin panel")
     public void iClickOnTheAdminPanel() {
+        dashboardPage.clickAdminPanelButton_xpath();
 
     }
 
     @And("I click on the groups tab")
     public void iClickOnTheGroupsTab() {
-        // Write code here that turns the phrase above into concrete actions
+
+        dashboardPage.clickGroupsButton();
     }
 
     @And("I click on the create group button")
     public void iClickOnTheCreateGroupButton() {
-        // Write code here that turns the phrase above into concrete actions
+        dashboardPage.clickCreateNewGroup();
     }
 
     @And("I enter group name (.*)$")
-    public void iEnterGroupNameGroupName(String groupName) {
-        // Write code here that turns the phrase above into concrete actions
+    public void iEnterGroupNameGroupName(String groupName) throws InterruptedException {
+        dashboardPage.groupNameInput(groupName);
     }
 
     @And("I enter group description (.*)$")
-    public void iEnterGroupDescriptionGroupDescription(String groupDescription) {
-        // Write code here that turns the phrase above into concrete actions
+    public void iEnterGroupDescriptionGroupDescription(String groupDescription) throws InterruptedException {
+        dashboardPage.groupDescriptionArea(groupDescription);
     }
 
     @And("I enter year (.*)$")
-    public void iEnterYear(int year) { }
+    public void iEnterYear(String year) throws InterruptedException {
+        dashboardPage.enterGroupYear(year);
+    }
 
     @And("I enter max capacity (.*)$")
     public void iEnterMaxCapacityMaxCapacity(int maxCapacity) {
@@ -90,4 +98,14 @@ public class stepsDef extends Base{
     public void iShouldSeeTheGroupCreatedSuccessfully() {
         // Write code here that turns the phrase above into concrete actions
     }
+
+    @AfterStep
+    public void addScreenshots(Scenario scenario) {
+        if (scenario.isFailed()) {
+            byte[] screenshots = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshots, "image/png", "image");
+        }
+    }
+
+
 }
