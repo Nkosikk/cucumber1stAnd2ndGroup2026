@@ -24,10 +24,10 @@ jobs:
       - name: Build and run tests
         run: mvn -B clean test
 
-      - name: Upload Extent Report
+      - name: Upload Cucumber Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: extent-report
-          path: target/ExtentReports/
+          name: cucumber-report
+          path: target/
           retention-days: 7
