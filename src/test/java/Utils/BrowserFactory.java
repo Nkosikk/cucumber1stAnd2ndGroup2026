@@ -8,47 +8,23 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class BrowserFactory {
-
     static WebDriver driver;
 
     public static WebDriver startBrowser(String browserChoice, String url) {
-
-        boolean headless = Boolean.parseBoolean(
-                System.getProperty("headless", "false")
-        );
+        ChromeOptions chromeOptions = new ChromeOptions();
+        EdgeOptions edgeOptions = new EdgeOptions();
 
         if (browserChoice.equalsIgnoreCase("chrome")) {
-
-            ChromeOptions chromeOptions = new ChromeOptions();
-
-//            if (headless) {
-//                chromeOptions.addArguments("--headless=new");
-//            }
-            chromeOptions.addArguments("--headless=new");
-            chromeOptions.addArguments("--no-sandbox");
-            chromeOptions.addArguments("--disable-dev-shm-usage");
-            chromeOptions.addArguments("--window-size=1920,1080");
-            chromeOptions.addArguments("--disable-gpu");
+            //chromeOptions.addArguments("--headless");
             driver = new ChromeDriver(chromeOptions);
-
         } else if (browserChoice.equalsIgnoreCase("edge")) {
-
-            EdgeOptions edgeOptions = new EdgeOptions();
-
-            if (headless) {
-                edgeOptions.addArguments("--headless=new");
-            }
-
-            driver = new EdgeDriver(edgeOptions);
-
+            edgeOptions.addArguments("--headless");
+            driver = new EdgeDriver();
         } else {
-
             driver = new SafariDriver();
         }
-
         driver.manage().window().maximize();
         driver.get(url);
-
         return driver;
     }
 }

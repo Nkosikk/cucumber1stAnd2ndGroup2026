@@ -27,7 +27,7 @@ jobs:
           cache: maven
 
       - name: Build and Run Tests
-        run: mvn clean test -Dheadless=true -Dbrowser=chrome
+        run: mvn clean test -Dheadless=true
 
       - name: Upload Cucumber Report
         if: always()
