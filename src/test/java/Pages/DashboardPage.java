@@ -32,7 +32,7 @@ public class DashboardPage {
     @FindBy(xpath = "//input[@name='name']")
     WebElement groupNameInput;
 
-    @FindBy(xpath="//button[contains(.,'Groups')]")
+    @FindBy(xpath = "//button[contains(.,'Groups')]")
     WebElement groupsButton_xpath;
 
     @FindBy(xpath = "//textarea[@name='description']")
@@ -63,7 +63,7 @@ public class DashboardPage {
         adminPanel_xpath.click();
     }
 
-    public void clickGroupsButton(){
+    public void clickGroupsButton() {
         groupsButton_xpath.click();
     }
 
@@ -72,25 +72,27 @@ public class DashboardPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(), " +
                 "'Create New Group')]")));
 
-         // JavaScript click bypasses the overlay
-         JavascriptExecutor js = (JavascriptExecutor) driver;
-         js.executeScript("arguments[0].click();", createNewGroup_xpath);
-         }
+        // JavaScript click bypasses the overlay
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", createNewGroup_xpath);
+    }
 
-         public void groupNameInput(String groupName){
-         groupNameInput.sendKeys(groupName);
+    public void groupNameInput(String groupName) throws InterruptedException {
+        groupNameInput.sendKeys(groupName);
 
-         Assert.assertEquals(groupNameInput.getAttribute("value"), "some name",
-         "Group Name entered is correct");
-         }
+        Assert.assertEquals(groupNameInput.getAttribute("value"), "some name",
+                "Group Name entered is correct");
+    }
 
-         public void groupDescriptionArea(String groupDescription) {
-         groupDescriptionArea.sendKeys(groupDescription);
-         }
+    public void groupDescriptionArea(String groupDescription) {
+        groupDescriptionArea.sendKeys(groupDescription);
+    }
 
-         public void enterGroupYear(String year){
-         groupYear.sendKeys(year);
-         }
+    public void enterGroupYear(String year) {
+        groupYear.click();
+        groupYear.clear();
+        groupYear.sendKeys(year);
+    }
 
 
 }

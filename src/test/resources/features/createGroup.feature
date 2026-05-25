@@ -21,7 +21,7 @@ Feature: Create Group
     Then i should see the group created successfully
     Examples:
       | email             | password  | groupName | groupDescription | year | maxCapacity | startDate  | endDate    |
-      | admin@gmail.com   | @12345678 | some name | some description | 2026 |  65456      |  05182026  |  05182027  |
+      | admin@gmail.com   | @12345678 | some name | some description | 2027 |  65456      |  05182026  |  05182027  |
 
 
 

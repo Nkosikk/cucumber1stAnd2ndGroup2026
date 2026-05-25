@@ -65,17 +65,17 @@ public class stepsDef extends Base {
     }
 
     @And("I enter group name (.*)$")
-    public void iEnterGroupNameGroupName(String groupName) {
+    public void iEnterGroupNameGroupName(String groupName) throws InterruptedException {
         dashboardPage.groupNameInput(groupName);
     }
 
     @And("I enter group description (.*)$")
-    public void iEnterGroupDescriptionGroupDescription(String groupDescription) {
+    public void iEnterGroupDescriptionGroupDescription(String groupDescription) throws InterruptedException {
         dashboardPage.groupDescriptionArea(groupDescription);
     }
 
     @And("I enter year (.*)$")
-    public void iEnterYear(String year) {
+    public void iEnterYear(String year) throws InterruptedException {
         dashboardPage.enterGroupYear(year);
     }
 
