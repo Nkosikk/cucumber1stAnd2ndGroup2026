@@ -1,7 +1,9 @@
 package Steps;
 
+import Pages.CreateYourAccountPage;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.OutputType;
@@ -59,8 +61,8 @@ public class stepsDef extends Base {
         dashboardPage.clickGroupsButton();
     }
 
-    @And("I click on the create group button")
-    public void iClickOnTheCreateGroupButton() {
+    @And("I click on the create new group button")
+    public void iClickOnTheCreateNewGroupButton() {
         dashboardPage.clickCreateNewGroup();
     }
 
@@ -94,9 +96,78 @@ public class stepsDef extends Base {
         dashboardPage.enterEndDate(endDate);
     }
 
-    @Then("i should see the group created successfully")
-    public void iShouldSeeTheGroupCreatedSuccessfully() {
-        // Write code here that turns the phrase above into concrete actions
+    @When("I click on the create group button")
+    public void iClickOnTheCreateGroupButton() {
+        dashboardPage.clickCreateGroupButton();
+
+    }
+
+    @Then("i should see message {string}")
+    public void iShouldSeeMessage(String arg0) {
+        dashboardPage.verifySuccessToastMessageIsDisplayed(arg0);
+    }
+
+
+
+//    @Then("i should see the group created successfully")
+//    public void iShouldSeeTheGroupCreatedSuccessfully() {
+//
+//    }
+
+
+    @And("I click on Back to Website button")
+    public void iClickOnBackToWebsiteButton() {
+       dashboardPage.clickOnBackToWebsiteButton_xpath();
+    }
+
+    @And("I click on the logged in user again")
+    public void iClickOnTheLoggedInUserAgain() {
+        dashboardPage.clickUserMenuButton_xpath();
+    }
+
+    @And("I click on logout button")
+    public void iClickOnLogoutButton() {
+        homePage.clickLogoutButton();
+    }
+
+    @And("logout confirmation alert should be displayed")
+    public void logoutConfirmationAlertShouldBeDisplayed() {
+      dashboardPage.verifyLogoutAlertIsDisplayed();
+    }
+
+    @And("I click on Ok button to confirm logout")
+    public void iClickOnOkButtonToConfirmLogout() {
+        dashboardPage.acceptAlert();
+    }
+
+    @And("Home page should be displayed again")
+    public void homePageShouldBeDisplayedAgain() {
+        homePage.verifyHomePageIsDisplayed();
+    }
+
+    @And("I click on the login button again")
+    public void iClickOnTheLoginButtonAgain() {
+        homePage.clickLoginButton();
+    }
+
+    @And("Login page should be displayed again")
+    public void loginPageShouldBeDisplayedAgain() {
+        loginPage.verifyLoginPageIsDisplayed();
+    }
+
+    @And("I click on Sign Up here link")
+    public void iClickOnSignUpHereLink() {
+        loginPage.clickSignUpHereLink();
+    }
+
+    @And("Create Your Account page should be displayed")
+    public void createYourAccountPageShouldBeDisplayed() {
+        createYourAccountPage.verifyCreateYourAccountPageIsDisplayed();
+    }
+
+    @And("I click on Select Your group dropdown")
+    public void iClickOnSelectYourGroupDropdown() {
+        createYourAccountPage.clickGroupDropdown();
     }
 
     @AfterStep
@@ -106,6 +177,7 @@ public class stepsDef extends Base {
             scenario.attach(screenshots, "image/png", "image");
         }
     }
+
 
 
 }
