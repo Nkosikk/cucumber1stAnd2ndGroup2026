@@ -31,3 +31,39 @@ jobs:
         with:
             name: Extents-report
             path: test-output/
+
+      - name: Send Email with the Report
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+
+
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+
+
+          subject: Cucumber Automation Test Report
+
+
+          to: fitness.seed@gmail.com
+          from: ${{ secrets.MAIL_USERNAME }}
+
+
+          body: |
+            Hi Team,
+            
+            
+            Please find attached the latest Extents Automation Report.
+            
+            
+            Execution completed successfully.
+            
+            
+            Regards,
+            Group1 and 2 Team
+          
+
+          attachments: test-output/
