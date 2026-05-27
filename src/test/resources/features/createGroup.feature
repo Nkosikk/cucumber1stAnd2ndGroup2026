@@ -10,7 +10,7 @@ Feature: Create Group
     And I click on the logged in user
     And I click on the admin panel
     And I click on the groups tab
-    And I click on the create group button
+    And I click on the create new group button
     And I enter group name <groupName>
     And I enter group description <groupDescription>
     And I enter year <year>
@@ -18,10 +18,23 @@ Feature: Create Group
     And I enter start date <startDate>
     And I enter end date <endDate>
     When I click on the create group button
-    Then i should see the group created successfully
+    Then i should see message "Group created successfully"
+    And I click on Back to Website button
+    And I click on the logged in user again
+    And I click on logout button
+    And logout confirmation alert should be displayed
+    And I click on Ok button to confirm logout
+    And Home page should be displayed again
+    And I click on the login button again
+    And Login page should be displayed again
+    And I click on Sign Up here link
+    And Create Your Account page should be displayed
+    And I click on Select Your group dropdown
+    #And I should see that the group was created successfully
+#    Then I should close the browser
     Examples:
-      | email             | password  | groupName | groupDescription | year | maxCapacity | startDate  | endDate    |
-      | admin@gmail.com   | @12345678 | some name | some description | 2027 |  65456      |  0005182026  |  0005182027  |
+      | email           | password  | groupName            | groupDescription     | year | maxCapacity | startDate  | endDate    |
+      | admin@gmail.com | @12345678 | Another Group Name 5 | Another Group Name 5 | 2026 | 65456       | 2026-05-27 | 2028-05-26 |
 
 
 

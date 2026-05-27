@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,6 +46,19 @@ public class DashboardPage {
 
     @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[3]/div[2]/input")
     WebElement maxCapacity_xpath;
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[5]/button[1]")
+    WebElement createGroup_xpath;
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[2]")
+    WebElement successToastMessage_xpath;
+
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[2]/div[2]/button")
+    WebElement backToWebsiteButton_xpath;
+
+    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/div/div/button[5]/span[2]")
+    WebElement logoutButton_xpath;
 
 
     public DashboardPage(WebDriver driver) {
@@ -104,8 +114,8 @@ public class DashboardPage {
     }
 
     public void enterStartDate(String startDate) {
-        startDate_xpath.click();
-        startDate_xpath.clear();
+//        startDate_xpath.click();
+//        startDate_xpath.clear();
         startDate_xpath.sendKeys(startDate);
     }
 
@@ -116,6 +126,28 @@ public class DashboardPage {
 
     public void enterMaxCapacity(String capacity) {
         maxCapacity_xpath.sendKeys(capacity);
+    }
+
+    public void clickCreateGroupButton() {
+        createGroup_xpath.click();
+    }
+
+    public void verifySuccessToastMessageIsDisplayed(String expectedMessage) {
+        successToastMessage_xpath.isDisplayed();
+    }
+
+    public void clickOnBackToWebsiteButton_xpath() {
+        backToWebsiteButton_xpath.click();
+    }
+    public void verifyLogoutAlertIsDisplayed() {
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        Assert.assertEquals(alertText, "Are you sure you want to logout?");
+    }
+
+    public void acceptAlert() {
+        driver.switchTo().alert().accept();
     }
 
 
