@@ -66,4 +66,4 @@ jobs:
             Group1 and 2 Team
           
 
-          attachments: test-output/
+          attachments: target/cucumber-report.html
