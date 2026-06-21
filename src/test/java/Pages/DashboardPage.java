@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -50,8 +47,24 @@ public class DashboardPage {
     @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[4]/div/form/div[3]/div[2]/input")
     WebElement maxCapacity_xpath;
 
+    @FindBy(xpath = "//button[@type='submit']")
+    WebElement clickCreateGroupButton_xpath;
 
-    public DashboardPage(WebDriver driver) {
+    @FindBy(xpath = "//h3[starts-with(normalize-space(), 'Test Group2026')]")
+    WebElement createdGroupName_xpath;
+
+    @FindBy(xpath = "//button[contains(text(),'← Back to Website')]")
+    WebElement backToWebsiteButton_xpath;
+
+    @FindBy(xpath = "//button[contains(@class,'user-pill')]")
+    WebElement userMenuButton;
+
+    @FindBy(xpath = "//div[@class='nav-user-section']//button[5]")
+    WebElement logoutButton_xpath;
+
+
+    public DashboardPage(WebDriver driver)
+    {
         this.driver = driver;
     }
 
@@ -86,11 +99,9 @@ public class DashboardPage {
         js.executeScript("arguments[0].click();", createNewGroup_xpath);
     }
 
-    public void groupNameInput(String groupName) throws InterruptedException {
+    public void groupNameInput(String groupName) {
         groupNameInput.sendKeys(groupName);
 
-//        Assert.assertEquals(groupNameInput.getAttribute("value"), "some name",
-//                "Group Name entered is correct");
     }
 
     public void groupDescriptionArea(String groupDescription) {
@@ -110,12 +121,44 @@ public class DashboardPage {
     }
 
     public void enterEndDate(String date) {
-//        endDate_xpath.clear();
         endDate_xpath.sendKeys(date);
     }
 
     public void enterMaxCapacity(String capacity) {
         maxCapacity_xpath.sendKeys(capacity);
+    }
+
+    public void clickCreateGroupButton() {
+        clickCreateGroupButton_xpath.click();
+    }
+
+    public void verifyGroupIsCreated(String groupName) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(createdGroupName_xpath));
+        Assert.assertEquals(createdGroupName_xpath.getText(), groupName, "Group name does not match");
+    }
+
+    public void clickBackToWebsiteButton() {
+        backToWebsiteButton_xpath.click();
+
+    }
+
+    public void userClicksMenuButton() {
+        userMenuButton.click();
+    }
+
+    public void userClicksLogoutButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(logoutButton_xpath));
+        logoutButton_xpath.click();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        LoginPage loginPage = new LoginPage(driver);
+        wait.until(ExpectedConditions.visibilityOf(loginPage.testLoginButton));
+        loginPage.clickTestLoginButton();
+        alert.accept();
+
+
     }
 
 

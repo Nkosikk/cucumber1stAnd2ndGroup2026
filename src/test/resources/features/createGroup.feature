@@ -17,11 +17,19 @@ Feature: Create Group
     And I enter max capacity <maxCapacity>
     And I enter start date <startDate>
     And I enter end date <endDate>
-    When I click on the create group button
+    When I click on the create group button and confirm the creation
     Then i should see the group created successfully
+    And I should go back to Website home page
+    And I click on the Menu Button
+    And I click on the logout button
+    Then I click login button
+    And I click on the Sign Up Here Link
+    And I should be on the registration page
+    Then I verify that the group created is visible in the registration page
+
     Examples:
       | email             | password  | groupName | groupDescription | year | maxCapacity | startDate  | endDate    |
-      | admin@gmail.com   | @12345678 | some name | some description | 2027 |  65456      |  0005182026  |  0005182027  |
+      | tumi@gmail.com   | @12345678 | Test Group2026 | Test description | 2027 |  6545     |  20260610  |  20270620  |
 
 
 

@@ -16,7 +16,7 @@ public class BrowserFactory {
         EdgeOptions edgeOptions = new EdgeOptions();
 
         if (browserChoice.equalsIgnoreCase("chrome")) {
-            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--headed");
 
 
             driver = new ChromeDriver(chromeOptions);
